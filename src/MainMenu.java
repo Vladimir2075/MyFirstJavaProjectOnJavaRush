@@ -14,7 +14,7 @@ public class MainMenu {
         RunMainMenu(0);
     }
 
-    // level -Menu level
+    //level =1  - головне меню; level =2- підменю
     public void RunMainMenu (int level){
         boolean isExit = false;
         Scanner keyboard = new Scanner(System.in);
@@ -39,12 +39,12 @@ public class MainMenu {
                 }
             } else {
                 if (yourChoice == 1) {
-                 //   run encryptionDecryption;
+                    CAESARS_CIPHER.encryptionDecryption(true);
                     System.out.println("Файл успішно зашифрований");
                     menuDrawing(NAME_FIRST_OPTION, NAME_SECOND_OPTION, NAME_OPTION_EXIT);
                     isExit = true;
                 } else if (yourChoice == 2) {
-                    //run Decryption;
+                    CAESARS_CIPHER.encryptionDecryption(false);
                     System.out.println("Файл успішно розшифрований");
                     menuDrawing(NAME_FIRST_OPTION, NAME_SECOND_OPTION, NAME_OPTION_EXIT);
                     isExit = true;
