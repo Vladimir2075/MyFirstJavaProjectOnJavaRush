@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 public class CaesarsCipher {
     private static CaesarsCipher instance;
-    private final int KEY = 3;
+    private final int KEY_ENCRYPTION = 3;
+    private final int KEY_DECRYPTION = 3;
+    private final int CHAR_NOT_FOUND = -1;
 
     private final List<Character> CYR_LETTERS = Arrays.asList('а','б','в','г', 'д','е','є','ж','з','и','і','ї','й','к',
             'л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ь','ю','я',
@@ -22,18 +24,18 @@ public class CaesarsCipher {
 
     private CaesarsCipher() {
     }
-    public  static synchronized CaesarsCipher  getInstance() {
+    public  static CaesarsCipher  getInstance() {
         if (instance ==null) {
             instance = new CaesarsCipher();
         }
         return instance;
     }
 
-    private char newChar (char ch, int key) {
-        int  currPosition =  CYR_LETTERS.indexOf(ch);
+    private char newChar (char currentChar, int key) {
+        int  currPosition =  CYR_LETTERS.indexOf(currentChar);
         int newPosition;
-        if (currPosition ==-1) {
-            return ch;
+        if (currPosition ==CHAR_NOT_FOUND) {
+            return currentChar;
         } else {
             if  ((currPosition + key) >=0) {
                 newPosition = ((currPosition + key) > (CYR_LETTERS.size() - 1)) ? (currPosition + key - CYR_LETTERS.size()) : (currPosition + key);
@@ -65,7 +67,7 @@ public class CaesarsCipher {
     }
 
     void encryptionDecryption (boolean isEncryption){
-        int localKey =  isEncryption?KEY:(-1*KEY);
+        int localKey =  isEncryption?KEY_ENCRYPTION:KEY_DECRYPTION;
         Path sourceFilePath = checkCorrectpath ("Вкажіть шляд до файлу який потрібно зчитати:", true);
         Path targetFile = checkCorrectpath ("Вкажіть шляд до файлу куди записати результат:", false);
         if (!Files.exists(targetFile)) {
