@@ -18,6 +18,7 @@ public class MainMenu {
     final boolean IS_ENCRYPTION = true;
     final boolean IS_DECRYPTION = false;
     private final CaesarsCipher CAESARS_CIPHER=CaesarsCipher.getInstance();
+    private final BrutForceCryptoAnalysis brutForceCryptoAnalysis = BrutForceCryptoAnalysis.getInstance();
     public MainMenu() {
         System.out.println("Головне меню:");
         RunMainMenu(MAIN_FIRST_LEVEL);
@@ -40,8 +41,8 @@ public class MainMenu {
                 if (yourChoice == CHOICE_FIRST_OPTION) {
                     RunMainMenu(MAIN_SECOND_LEVEL);
                 } else if (yourChoice == CHOICE_SECOND_OPTION) {
-
-                    isExit = true;
+                    System.out.println(brutForceCryptoAnalysis.getKeyValueByBrutForceCryptoAnalysis());
+                    menuDrawing(NAME_FIRST_OPTION,NAME_SECOND_OPTION,NAME_OPTION_EXIT);
                 } else if (yourChoice == CHOICE_EXIT) {
                     isExit = true;
                 }

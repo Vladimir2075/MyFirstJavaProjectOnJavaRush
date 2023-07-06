@@ -11,16 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CaesarsCipher {
+    private Utils  utils =Utils.getInstance();
     private static CaesarsCipher instance;
     private final int KEY_ENCRYPTION = 3;
-    private final int KEY_DECRYPTION = 3;
-    private final int CHAR_NOT_FOUND = -1;
+    private final int KEY_DECRYPTION = -3;
 
-    private final List<Character> CYR_LETTERS = Arrays.asList('а','б','в','г', 'д','е','є','ж','з','и','і','ї','й','к',
-            'л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ь','ю','я',
-            'А','Б','В','Г', 'Д','Е','Є','Ж','З','И','І','Ї','Й','К',
-            'Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ю','Я',
-            '.', ',','"',':','-','!','?',' ');
+
 
     private CaesarsCipher() {
     }
@@ -32,44 +28,25 @@ public class CaesarsCipher {
     }
 
     private char newChar (char currentChar, int key) {
-        int  currPosition =  CYR_LETTERS.indexOf(currentChar);
+        int  currPosition =  utils.CYR_LETTERS.indexOf(currentChar);
         int newPosition;
-        if (currPosition ==CHAR_NOT_FOUND) {
+        if (currPosition ==utils.CHAR_NOT_FOUND) {
             return currentChar;
         } else {
             if  ((currPosition + key) >=0) {
-                newPosition = ((currPosition + key) > (CYR_LETTERS.size() - 1)) ? (currPosition + key - CYR_LETTERS.size()) : (currPosition + key);
+                newPosition = ((currPosition + key) > (utils.CYR_LETTERS.size() - 1)) ? (currPosition + key - utils.CYR_LETTERS.size()) : (currPosition + key);
             } else {
-                newPosition =  CYR_LETTERS.size() + (currPosition + key);
+                newPosition =  utils.CYR_LETTERS.size() + (currPosition + key);
             }
-            return CYR_LETTERS.get(newPosition);
+            return utils.CYR_LETTERS.get(newPosition);
         }
     }
-    private Path checkCorrectpath (String nameInputString, boolean checkExistsFile) {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println(nameInputString);
-        Path resultPath =Path.of("");
-        if (checkExistsFile) {
-            boolean isCorrectivePath = false;
-            while (!isCorrectivePath) {
-                resultPath = Path.of(keyboard.nextLine());
-                if (Files.isRegularFile(resultPath)) {
-                    isCorrectivePath = true;
-                } else {
-                    System.out.println(nameInputString);
-                }
-            }
-        } else {
-            resultPath = Path.of(keyboard.nextLine());
-        }
 
-        return resultPath;
-    }
 
     void encryptionDecryption (boolean isEncryption){
         int localKey =  isEncryption?KEY_ENCRYPTION:KEY_DECRYPTION;
-        Path sourceFilePath = checkCorrectpath ("Вкажіть шляд до файлу який потрібно зчитати:", true);
-        Path targetFile = checkCorrectpath ("Вкажіть шляд до файлу куди записати результат:", false);
+        Path sourceFilePath = utils.checkCorrectpath ("Вкажіть шляд до файлу який потрібно зчитати:", true);
+        Path targetFile = utils.checkCorrectpath ("Вкажіть шляд до файлу куди записати результат:", false);
         if (!Files.exists(targetFile)) {
             try {
                 Files.createFile(targetFile);
