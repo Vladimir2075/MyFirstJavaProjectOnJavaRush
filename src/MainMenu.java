@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
 public class MainMenu {
-    final String NAME_FIRST_OPTION = "1.Шифр Цезаря";
-    final String NAME_FIRST_FIRST_OPTION = "1.Шифрування (для вибору введіть 1 ";
-    final String NAME_FIRST_SECOND_OPTION = "2.Дешифрування (для вибору введіть 2)";
-    final String NAME_FIRST_THIRD_OPTION = "3.Перехід в основне меню(для вибору введіть 3)";
-    final String NAME_SECOND_OPTION = "2.Криптоаналіз методом brute force";
-    final String YOUR_CHOICE = "Ваш вибір:";
-    final String NAME_OPTION_EXIT = "3.Вихід (3)";
+    private final String NAME_FIRST_OPTION = "1.Шифр Цезаря";
+    private final String NAME_FIRST_FIRST_OPTION = "1.Шифрування (для вибору введіть 1 ";
+    private final String NAME_FIRST_SECOND_OPTION = "2.Дешифрування (для вибору введіть 2)";
+    private final String NAME_FIRST_THIRD_OPTION = "3.Перехід в основне меню(для вибору введіть 3)";
+    private final String NAME_SECOND_OPTION = "2.Криптоаналіз методом brute force";
+    private final String YOUR_CHOICE = "Ваш вибір:";
+    private final String NAME_OPTION_EXIT = "3.Вихід (3)";
 
-    final int MAIN_FIRST_LEVEL=0;
-    final int MAIN_SECOND_LEVEL=1;
-    final int CHOICE_FIRST_OPTION =1;
-    final int CHOICE_SECOND_OPTION = 2;
-    final int CHOICE_EXIT=3;
+    private final int MAIN_FIRST_LEVEL=0;
+    private final int MAIN_SECOND_LEVEL=1;
+    private final int CHOICE_FIRST_OPTION =1;
+    private final int CHOICE_SECOND_OPTION = 2;
+    private final int CHOICE_EXIT=3;
 
     final boolean IS_ENCRYPTION = true;
     final boolean IS_DECRYPTION = false;
