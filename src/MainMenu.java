@@ -9,21 +9,24 @@ public class MainMenu {
     final String YOUR_CHOICE = "Ваш вибір:";
     final String NAME_OPTION_EXIT = "3.Вихід (3)";
 
-    final int MAIN_LEVEL=0;
+    final int MAIN_FIRST_LEVEL=0;
     final int MAIN_SECOND_LEVEL=1;
     final int CHOICE_FIRST_OPTION =1;
     final int CHOICE_SECOND_OPTION = 2;
     final int CHOICE_EXIT=3;
+
+    final boolean IS_ENCRYPTION = true;
+    final boolean IS_DECRYPTION = false;
     private final CaesarsCipher CAESARS_CIPHER=CaesarsCipher.getInstance();
     public MainMenu() {
         System.out.println("Головне меню:");
-        RunMainMenu(0);
+        RunMainMenu(MAIN_FIRST_LEVEL);
     }
 
     public void RunMainMenu (int level){
         boolean isExit = false;
         Scanner keyboard = new Scanner(System.in);
-        if (level ==MAIN_LEVEL) {
+        if (level ==MAIN_FIRST_LEVEL) {
             menuDrawing(NAME_FIRST_OPTION,NAME_SECOND_OPTION,NAME_OPTION_EXIT);
         } else {
             menuDrawing(NAME_FIRST_FIRST_OPTION,NAME_FIRST_SECOND_OPTION, NAME_FIRST_THIRD_OPTION);
@@ -33,7 +36,7 @@ public class MainMenu {
             if (keyboard.hasNextInt()) {
                 yourChoice = keyboard.nextInt();
             }
-            if (level == MAIN_LEVEL) {
+            if (level == MAIN_FIRST_LEVEL) {
                 if (yourChoice == CHOICE_FIRST_OPTION) {
                     RunMainMenu(MAIN_SECOND_LEVEL);
                 } else if (yourChoice == CHOICE_SECOND_OPTION) {
@@ -44,12 +47,12 @@ public class MainMenu {
                 }
             } else {
                 if (yourChoice == CHOICE_FIRST_OPTION) {
-                    CAESARS_CIPHER.encryptionDecryption(true);
+                    CAESARS_CIPHER.encryptionDecryption(IS_ENCRYPTION);
                     System.out.println("Файл успішно зашифрований");
                     menuDrawing(NAME_FIRST_OPTION, NAME_SECOND_OPTION, NAME_OPTION_EXIT);
                     isExit = true;
                 } else if (yourChoice == CHOICE_SECOND_OPTION) {
-                    CAESARS_CIPHER.encryptionDecryption(false);
+                    CAESARS_CIPHER.encryptionDecryption(IS_DECRYPTION);
                     System.out.println("Файл успішно розшифрований");
                     menuDrawing(NAME_FIRST_OPTION, NAME_SECOND_OPTION, NAME_OPTION_EXIT);
                     isExit = true;
