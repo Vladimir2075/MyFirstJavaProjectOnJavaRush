@@ -27,7 +27,7 @@ public class MainMenu {
     public void RunMainMenu (int level){
         boolean isExit = false;
         Scanner keyboard = new Scanner(System.in);
-        if (level ==MAIN_FIRST_LEVEL) {
+        if (level == MAIN_FIRST_LEVEL) {
             menuDrawing(NAME_FIRST_OPTION,NAME_SECOND_OPTION,NAME_OPTION_EXIT);
         } else {
             menuDrawing(NAME_FIRST_FIRST_OPTION,NAME_FIRST_SECOND_OPTION, NAME_FIRST_THIRD_OPTION);

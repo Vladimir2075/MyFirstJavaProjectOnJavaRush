@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class CaesarsCipher {
     private Utils  utils =Utils.getInstance();
-    private static CaesarsCipher instance;
+    private final static CaesarsCipher instance=getInstance();
     private final int KEY_ENCRYPTION = 3;
     private final int KEY_DECRYPTION = -3;
 
@@ -21,13 +21,10 @@ public class CaesarsCipher {
     private CaesarsCipher() {
     }
     public  static CaesarsCipher  getInstance() {
-        if (instance ==null) {
-            instance = new CaesarsCipher();
-        }
         return instance;
     }
 
-    private char newChar (char currentChar, int key) {
+    private char getNewChar (char currentChar, int key) {
         int  currPosition =  utils.CYR_LETTERS.indexOf(currentChar);
         int newPosition;
         if (currPosition ==utils.CHAR_NOT_FOUND) {
@@ -66,7 +63,7 @@ public class CaesarsCipher {
                 charBufferIn = Charset.forName("WINDOWS-1251").decode(bufferRead);
                 while (charBufferIn.hasRemaining()) {
                     char temp = charBufferIn.get();
-                    charBufferOut.append(newChar(temp,localKey));
+                    charBufferOut.append(getNewChar(temp,localKey));
                 }
                 bufferWrite.flip();
                 charBufferOut.flip();
