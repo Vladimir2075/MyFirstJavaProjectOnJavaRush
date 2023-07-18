@@ -3,25 +3,22 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-public class Utils {
-
-    private static Utils instance;
+public class UtilsAlphabetAndCheckPath {
+    private static UtilsAlphabetAndCheckPath instance;
     public final int CHAR_NOT_FOUND = -1;
 
-    private Utils (){
-
+    private UtilsAlphabetAndCheckPath (){
     }
-    public static Utils getInstance() {
+    public static UtilsAlphabetAndCheckPath getInstance() {
         if (instance == null) {
-            instance = new Utils();
+            instance = new UtilsAlphabetAndCheckPath();
         }
         return instance;
     }
-    public Path checkCorrectpath (String nameInputString, boolean checkExistsFile) {
+    public Path checkCorrectpath(String nameInputString, boolean checkExistsFile) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println(nameInputString);
-        Path resultPath =Path.of("");
+        Path resultPath = Path.of("");
         if (checkExistsFile) {
             boolean isCorrectivePath = false;
             while (!isCorrectivePath) {

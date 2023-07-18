@@ -8,36 +8,35 @@ public class MainMenu {
     private final String NAME_SECOND_OPTION = "2.Криптоаналіз методом brute force";
     private final String YOUR_CHOICE = "Ваш вибір:";
     private final String NAME_OPTION_EXIT = "3.Вихід (3)";
-
-    private final int MAIN_FIRST_LEVEL=0;
-    private final int MAIN_SECOND_LEVEL=1;
-    private final int CHOICE_FIRST_OPTION =1;
+    private final int MAIN_FIRST_LEVEL = 0;
+    private final int MAIN_SECOND_LEVEL = 1;
+    private final int CHOICE_FIRST_OPTION = 1;
     private final int CHOICE_SECOND_OPTION = 2;
-    private final int CHOICE_EXIT=3;
-
+    private final int CHOICE_EXIT = 3;
+    private int defaultValue =-1;
     final boolean IS_ENCRYPTION = true;
     final boolean IS_DECRYPTION = false;
-    private final CaesarsCipher CAESARS_CIPHER=CaesarsCipher.getInstance();
+    private final CaesarsCipher CAESARS_CIPHER = CaesarsCipher.getInstance();
     private final BrutForceCryptoAnalysis brutForceCryptoAnalysis = BrutForceCryptoAnalysis.getInstance();
     public MainMenu() {
         System.out.println("Головне меню:");
         RunMainMenu(MAIN_FIRST_LEVEL);
     }
 
-    public void RunMainMenu (int level){
+    public void RunMainMenu (int showLevelMenu){
         boolean isExit = false;
         Scanner keyboard = new Scanner(System.in);
-        if (level == MAIN_FIRST_LEVEL) {
+        if (showLevelMenu == MAIN_FIRST_LEVEL) {
             menuDrawing(NAME_FIRST_OPTION,NAME_SECOND_OPTION,NAME_OPTION_EXIT);
         } else {
             menuDrawing(NAME_FIRST_FIRST_OPTION,NAME_FIRST_SECOND_OPTION, NAME_FIRST_THIRD_OPTION);
         }
-        int yourChoice=-1;
+        int yourChoice = defaultValue;
         while (!isExit) {
             if (keyboard.hasNextInt()) {
                 yourChoice = keyboard.nextInt();
             }
-            if (level == MAIN_FIRST_LEVEL) {
+            if (showLevelMenu == MAIN_FIRST_LEVEL) {
                 if (yourChoice == CHOICE_FIRST_OPTION) {
                     RunMainMenu(MAIN_SECOND_LEVEL);
                 } else if (yourChoice == CHOICE_SECOND_OPTION) {
@@ -71,5 +70,4 @@ public class MainMenu {
         System.out.println(nameThirdOption);
         System.out.print(YOUR_CHOICE);
     }
-
 }
