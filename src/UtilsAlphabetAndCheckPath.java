@@ -7,7 +7,7 @@ public class UtilsAlphabetAndCheckPath {
     private static UtilsAlphabetAndCheckPath instance;
     public final int CHAR_NOT_FOUND = -1;
 
-    private UtilsAlphabetAndCheckPath (){
+    private UtilsAlphabetAndCheckPath(){
     }
     public static UtilsAlphabetAndCheckPath getInstance() {
         if (instance == null) {

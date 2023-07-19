@@ -9,16 +9,19 @@ import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
 public class CaesarsCipher {
     private UtilsAlphabetAndCheckPath  utils = UtilsAlphabetAndCheckPath.getInstance();
-    private final static CaesarsCipher instance = getInstance();
+    private static CaesarsCipher instance;
     private final int KEY_ENCRYPTION = 3;
     private final int KEY_DECRYPTION = -3;
     private String charSetName = "WINDOWS-1251";
+
     private CaesarsCipher() {
     }
     public  static CaesarsCipher getInstance() {
+        if (instance == null) {
+            instance = new CaesarsCipher();
+        }
         return instance;
     }
     private char getNewChar(char currentChar, int key) {
